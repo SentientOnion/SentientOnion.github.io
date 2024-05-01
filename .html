@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple web page Template</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.navbar {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: sticky;
+			top: 0;
+			padding: 15px;
+			cursor: pointer;
+		}
+
+		.background {
+			background: black;
+			background-blend-mode: darken;
+			background-size: cover;
+		}
+
+		.nav-list {
+			width: 70%;
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			list-style: none;
+		}
+
+		.logo {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.logo img {
+			width: 180px;
+			border-radius: 50px;
+		}
+
+		.nav-list li {
+			list-style: none;
+			padding: 26px 30px;
+			padding: 10px;
+		}
+
+		.nav-list li a {
+			text-decoration: none;
+			color: white;
+		}
+
+		.nav-list li a:hover {
+			color: grey;
+		}
+
+		.rightnav {
+			width: 30%;
+			text-align: right;
+		}
+
+		#search {
+			padding: 5px;
+			font-size: 17px;
+			border: 2px solid grey;
+			border-radius: 9px;
+		}
+
+		.firstsection {
+			background-color: lightgreen;
+			height: 400px;
+		}
+
+		.secondsection {
+			background-color: blue;
+			height: 400px;
+		}
+
+		.box-main {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: black;
+			max-width: 80%;
+			margin: auto;
+			height: 80%;
+		}
+
+		.firsthalf {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.secondhalf {
+			width: 30%;
+		}
+
+		.secondhalf img {
+			width: 70%;
+			border: 4px solid white;
+			border-radius: 150px;
+			display: block;
+			margin: auto;
+		}
+
+		.text-big {
+			font-family: 'Piazzolla', serif;
+			font-weight: bold;
+			font-size: 35px;
+            text-align:center;
+            padding:10px;
+		}
+
+		.text-small {
+			font-size: 18px;
+		}
+
+		.btn {
+			padding: 8px 20px;
+			margin: 7px 0;
+			border: 2px solid white;
+			border-radius: 8px;
+			background: none;
+			color: white;
+			cursor: pointer;
+		}
+
+		.btn-sm {
+			padding: 6px 10px;
+			vertical-align: middle;
+		}
+
+		.section {
+			height: 400px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			max-width: 90%;
+			margin: auto;
+		}
+
+		.section-Left {
+			flex-direction: row-reverse;
+		}
+
+		.paras {
+			padding: 0px 65px;
+		}
+
+		.thumbnail img {
+			width: 250px;
+			border: 2px solid black;
+			border-radius: 26px;
+			margin-top: 19px;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		.text-footer {
+			text-align: center;
+			padding: 30px 0;
+			font-family: 'Ubuntu', sans-serif;
+			display: flex;
+			justify-content: center;
+			color: white;
+		}
+
+		footer {
+			text-align: center;
+			padding: 15px;
+		}
+
+		.rightnav {
+			width: 100%;
+			text-align: right;
+			margin-top: 10px;
+		}
+
+		#search {
+			box-sizing: border-box;
+			width: 70%;
+			padding: 8px;
+			font-size: 17px;
+			border: 2px solid grey;
+			border-radius: 9px;
+		}
+
+		.btn-sm {
+            padding: 15px 30px;
+            margin: 10px 50px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .popup {
+          display: none;
+          position: fixed;
+          z-index: 999;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          background-color: white;
+          padding: 10px;
+          border: 4px solid #ccc;
+          max-width: 100%; /* Adjust the maximum width of the popup */
+          max-height: 100%; /* Adjust the maximum height of the popup */
+          overflow: auto; /* Add scrollbars if content overflows */
+          border-radius: 10px; /* Add some border-radius for rounded corners */
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+}
+.close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    width: 40px; /* Adjust the width of the close button */
+    height: 40px; /* Adjust the height of the close button */
+    background-color: #ccc; /* Add a background color */
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close:hover {
+    background-color: #aaa; /* Change color on hover */
+}
+
+.close::before,
+.close::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 14px;
+    background-color: #555; /* Color of the close icon */
+}
+
+.close::before {
+    transform: rotate(45deg);
+}
+
+.close::after {
+    transform: rotate(-45deg);
+}
+.btn-sm:hover {
+    background-color: #45a049;
+}
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		.fade-transition {
+			transition: opacity 0.5s ease-in-out;
+		}
+        #buttonContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Create 4 equal-width columns */
+    justify-content: center;
+    position: absolute;
+    top: 30%;
+    gap: 5px; /* Add some gap between buttons */
+}
+#buttonContainersummary {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Create 4 equal-width columns */
+    justify-content: center;
+    position: absolute;
+    top: 10%;
+    gap: 5px; /* Add some gap between buttons */
+}
+.popup-main {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 50%;
+            top: 40%; /* Adjust top position to appear above other buttons */
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+	</style>
+</head>
+<body>
+	<nav class="navbar background">
+		<div class="logo">
+			<img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" style="height: 30px;" alt="Logo">
+		</div>
+		<ul class="nav-list">
+			<li><a href="#web">Web Technology</a></li>
+			<li><a href="#program">C Programming</a></li>
+			<li><a href="#course">Courses</a></li>
+		</ul>
+	</nav>
+
+	<section class="firstsection" onmouseover="showButtons()" onmouseout="hideButtons()">
+		<div class="box-main">
+			<div class="firstHalf">
+				<h1 class="text-big" id="web">Gallery</h1>
+				<p class="text-small">
+					Here is a gallery of assorted works.
+				</p>
+			</div>
+            <div id="buttonContainer" style="opacity:0;" class="fade-transition">
+			<button class="btn btn-sm" onclick="showPopup('popup1')">The simple house</button>
+            <button class="btn btn-sm" onclick="showPopup('popup2')">A Scene of nature</button>
+            <button class="btn btn-sm" onclick="showPopup('popup3')">Epic Fruit</button>
+            <button class="btn btn-sm" onclick="showPopup('popup4')">Humble Cabin</button>
+            <button class="btn btn-sm" onclick="showPopup('popup5')">Pixel Ramen</button>
+            <button class="btn btn-sm" onclick="showPopup('popup6')">Small Sparkle</button>
+            <button class="btn btn-sm" onclick="showPopup('popup7')">Strange Tower</button>
+            <button class="btn btn-sm" onclick="showPopup('popup8')">The Dome</button>
+            <button class="btn btn-sm" onclick="showPopup('popup9')">The Funk</button>
+            <button class="btn btn-sm" onclick="showPopup('popup10')">The Bread</button>
+		</div>
+         <div id="buttonContainersummary" style="opacity:0;" class="fade-transition">
+                <button class="btn btn-sm" onclick="showPopupMain('popupSection1')">The Works</button>
+            </div>
+        </div>
+	</section>
+	<section class="secondsection">
+		<div class="box-main">
+			<div class="firstHalf">
+				<h1 class="text-big" id="program">Hobbies</h1>
+				<p class="text-small">
+					C is a procedural programming language. It
+					was initially developed by Dennis Ritchie
+					as a system programming language to write
+					operating system. The main features of C
+					language include low-level access to memory,
+					simple set of keywords, and clean style,
+					these features make C language suitable for
+					system programming like operating system or
+					compiler development.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="paras">
+			<h1 class="sectionTag text-big">Career</h1>
+			<p class="sectionSubTag text-small"></p>
+		</div>
+		<div class="thumbnail">
+			<img src="img.png" alt="laptop image">
+		</div>
+        <div id="popup1" class="popup">
+  <span class="close" onclick="closePopup('popup1')">&times;</span>
+ <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/The%20simple%20house.png?raw=true">
+</div>
+<div id="popup2" class="popup">
+  <span class="close" onclick="closePopup('popup2')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/a%20scene%20of%20nature.png?raw=true">
+</div>
+<div id="popup3" class="popup">
+  <span class="close" onclick="closePopup('popup3')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/fruit.png?raw=true">
+</div>
+<div id="popup4" class="popup">
+  <span class="close" onclick="closePopup('popup4')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/humble%20cabin.png?raw=true">
+</div>
+<div id="popup5" class="popup">
+  <span class="close" onclick="closePopup('popup5')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/pixel%20ramen.png?raw=true">
+</div>
+<div id="popup6" class="popup">
+  <span class="close" onclick="closePopup('popup6')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/small%20sparkle.png?raw=true">
+</div>
+<div id="popup7" class="popup">
+  <span class="close" onclick="closePopup('popup7')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/strange%20tower.png?raw=true">
+</div>
+<div id="popup8" class="popup">
+  <span class="close" onclick="closePopup('popup8')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/the%20dome.png?raw=true">
+  </div>
+  <div id="popup9" class="popup">
+  <span class="close" onclick="closePopup('popup9')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/the%20funk%20tower.png?raw=true">
+  </div>
+  <div id="popup10" class="popup">
+  <span class="close" onclick="closePopup('popup10')">&times;</span>
+  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/the%20large%20bread.png?raw=true">
+</div>
+ <div id="popupSection1" class="popup-main">
+        <span class="close" onclick="closePopup('popupSection1')">&times;</span>
+        <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/the%20works.png?raw=true">
+</div>
+    </div>
+    <footer>
+		<p class="text-footer">Copyright ©-All rights are reserved</p>
+	</footer>
+	<script>
+   function showButtons() {
+    var containers = document.querySelectorAll("#buttonContainer, #buttonContainersummary");
+    containers.forEach(function(container) {
+        container.style.opacity = "1";
+    });
+}
+
+function hideButtons() {
+    var containers = document.querySelectorAll("#buttonContainer, #buttonContainersummary");
+    containers.forEach(function(container) {
+        container.style.opacity = "0";
+    });
+}
+
+    function showPopup(id) {
+        // Close all popups
+        var popups = document.querySelectorAll('.popup','.popup-main');
+        popups.forEach(function(popup) {
+            popup.style.display = "none";
+        });
+
+        // Show selected popup
+        var popup = document.getElementById(id);
+        popup.style.display = "block";
+    }
+    function closePopup(id) {
+        // Close the specific popup
+        var popup = document.getElementById(id);
+        popup.style.display = "none";
+    }
+    function showPopupMain(id) {
+            // Close all popups
+            var popups = document.querySelectorAll('.popup','.popup-main');
+            popups.forEach(function(popup) {
+                popup.style.display = "none";
+            });
+            // Show selected popup
+            var popup = document.getElementById(id);
+            popup.style.display = "block";
+        }
+</script>
