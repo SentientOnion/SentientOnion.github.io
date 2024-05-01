@@ -297,19 +297,41 @@
             border: 1px solid #ccc;
             border-radius: 30px;
         }
+.logo {
+    position: relative;
+    display: inline-block;
+}
+
+.hover-img {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 15px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 150px; /* Set maximum height */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease, width 0.5s ease; /* Add fade-in/out transition for opacity and width */
+}
+
+#green-onion:hover + .hover-img {
+    opacity: 1; /* Fade in */
+}
+
 	</style>
 </head>
 <body>
 	<nav class="navbar background">
-		<div class="logo">
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-        <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/green%20onion.jpg?raw=true" alt="Logo">
-    </a>
-</div>
+    <div class="logo">
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/green%20onion.jpg?raw=true" alt="Logo" class="main-img" id="green-onion">
+            <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/Trollface.png?raw=true" alt="Trollface" class="hover-img" id="trollface">
+        </a>
+    </div>
+
 		<ul class="nav-list">
-			<li><a href="#web">Test1</a></li>
-			<li><a href="#program">Test2</a></li>
-			<li><a href="#course">Test3</a></li>
+			<li><a href="#web">About Me</a></li>
+			<li><a href="#program">Opinions</a></li>
+			<li><a href="#course">Travel</a></li>
 		</ul>
 	</nav>
 
@@ -436,5 +458,15 @@ function hideButtons() {
             // Show selected popup
             var popup = document.getElementById(id);
             popup.style.display = "block";
+            function showTrollface() {
+    var trollface = document.getElementById('trollface');
+    trollface.style.opacity = "1";
+}
+
+function hideTrollface() {
+    var trollface = document.getElementById('trollface');
+    trollface.style.opacity = "0";
+}
+
         }
 </script>
