@@ -1,13 +1,53 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="style.css">
 	<style>
-		* {
-			margin: 0;
-			padding: 0;
-		}
+.about-me {
+    display: none; /* Initially hide the About Me section */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
 
+.about-me .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.iframe-container {
+    position: relative;
+    width: 90%;
+    height: 73%;
+    margin: auto;
+    padding-top: 30px; /* Adjust as needed to create space for the close button */
+}
+
+.responsive-iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1000;
+}
 		.navbar {
 			display: flex;
 			align-items: left;
@@ -21,6 +61,7 @@
 			background: black;
 			background-blend-mode: darken;
 			background-size: cover;
+            z-index: 200;
 		}
 
 		.nav-list {
@@ -72,16 +113,26 @@
 		.firstsection {
 			background-color: lightgreen;
 			height: 400px;
-            transition: background-color 0.5s ease;
+            transition: background-color 0.5s ease, border-top 0.5s ease;
+            z-index: 199;
 		}
         .firstsection:hover {
-    	background-color: #45a049;
+    		background-color: #45a049;
+        	border-bottom:7px solid #097969;
+        	border-top: 7px solid #097969
 		}
-
+        
 		.secondsection {
 			background-color: lightblue;
 			height: 400px;
+            transition: background-color 0.5s ease;
+            z-index: 199;
 		}
+        .secondsection:hover {
+        	background-color: #89CFF0;
+        	border-bottom:7px solid #6495ED;
+        	border-top: 7px solid #6495ED;
+        }
 
 		.box-main {
 			display: flex;
@@ -99,7 +150,6 @@
 			flex-direction: column;
 			justify-content: center;
 		}
-
 		.secondhalf {
 			width: 30%;
 		}
@@ -210,6 +260,23 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+        .btn-sm2 {
+            padding: 15px 30px;
+            margin: 10px 50px;
+            font-size: x-large;
+            background-color: #6495ED;
+            color: white;
+            border: 3px solid #0047AB;
+            border-radius: 10px;
+            cursor: pointer;
+            border-bottom: 3px solid #0047AB;
+            transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease, border-radius 0.3s ease-in-out, border-bottom 0.3 ease;
+        }
+        .btn-sm2:hover{
+        background-color:#7393B3;
+        border-radius: 60px;
+        border-bottom: 6px solid #0047AB;
+        }
         .popup {
           display: none;
           position: fixed;
@@ -220,9 +287,9 @@
           background-color: white;
           padding: 10px;
           border: 4px solid #ccc;
-          max-width: 100%; /* Adjust the maximum width of the popup */
-          max-height: 100%; /* Adjust the maximum height of the popup */
-          overflow: auto; /* Add scrollbars if content overflows */
+          max-width: 100%; 
+          max-height: 100%; 
+          overflow: auto;
           border-radius: 30px; /* Add some border-radius for rounded corners */
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
 }
@@ -271,19 +338,30 @@
 		}
         #buttonContainer {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Create 4 equal-width columns */
+    grid-template-columns: repeat(5, 1fr); 
     justify-content: center;
     position: absolute;
-    top: 42%;
-    gap: 5px; /* Add some gap between buttons */
+    top: 46%;
+    gap: 5px;
 }
+ #buttonContainer2 {
+  	display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    justify-content: center;
+    position: absolute;
+    top: 89%;
+    gap: 5px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+    
 #buttonContainersummary {
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* Create 4 equal-width columns */
+    grid-template-columns: repeat(1, 1fr);
     justify-content: center;
     position: absolute;
     top: 23.5%;
-    gap: 5px; /* Add some gap between buttons */
+    gap: 5px;
 }
 .popup-main {
             display: none;
@@ -311,12 +389,12 @@
     max-height: 150px; /* Set maximum height */
     opacity: 0; /* Initially hidden */
     transition: opacity 0.5s ease, width 0.5s ease; /* Add fade-in/out transition for opacity and width */
+    pointer-events: none; /* Make the element non-interactable */
 }
 
 #green-onion:hover + .hover-img {
     opacity: 1; /* Fade in */
 }
-
 	</style>
 </head>
 <body>
@@ -325,11 +403,11 @@
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
             <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/green%20onion.jpg?raw=true" alt="Logo" class="main-img" id="green-onion">
             <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/Trollface.png?raw=true" alt="Trollface" class="hover-img" id="trollface">
-        </a>
+               </a>
     </div>
 
 		<ul class="nav-list">
-			<li><a href="#web">About Me</a></li>
+			<li><a onclick="showAboutMe()">About Me</a></li>
 			<li><a href="#program">Opinions</a></li>
 			<li><a href="#course">Travel</a></li>
 		</ul>
@@ -360,15 +438,29 @@
             </div>
         </div>
 	</section>
-	<section class="secondsection">
+   
+	<section class="secondsection" onmouseover="showButtons2()" onmouseout="hideButtons2()">
 		<div class="box-main">
 			<div class="firstHalf">
 				<h1 class="text-big" id="program">Hobbies</h1>
 				<p class="text-small">
 				</p>
+                <div id="buttonContainer2" style="opacity:0;" class="fade-transition">
+                <button class="btn btn-sm2" onclick="showPopup('popup11')">Cooking</button>
+            	<button class="btn btn-sm2" onclick="showPopup('popup12')">Noita</button>
+            	<button class="btn btn-sm2" onclick="showPopup('popup13')">Academics</button>
+            	<button class="btn btn-sm2" onclick="showPopup('popup14')">*add</button>
 			</div>
 		</div>
+     </div>
 	</section>
+    
+<div class="about-me" id="about-me">
+    <span class="close" onclick="closeAboutMe()">&times;</span>
+    <div class="iframe-container">
+        <iframe class="responsive-iframe" src="https://docs.google.com/presentation/d/e/2PACX-1vRgNlaOUoahXcYGJ56Gzkhdlx2eNG4OFwqmN5m1WsVH8O4ifFVh4vC0Xu_s-vNmpvT1bl0d9Yf-g2Y9/embed?rm=minimal&#slide=id.g2d1db4533c5_0_0" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    </div>
+</div>
         <div id="popup1" class="popup">
   <span class="close" onclick="closePopup('popup1')">&times;</span>
  <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/The%20simple%20house.png?raw=true">
@@ -413,18 +505,17 @@
         <span class="close" onclick="closePopup('popupSection1')">&times;</span>
         <img src="https://github.com/SentientOnion/SentientOnion.github.io/blob/main/Pixel%20Art/the%20works.png?raw=true">
 </div>
-    </div>
     <footer>
 		<p class="text-footer">Copyright ©-All rights are reserved</p>
 	</footer>
 	<script>
+    
    function showButtons() {
     var containers = document.querySelectorAll("#buttonContainer, #buttonContainersummary");
     containers.forEach(function(container) {
         container.style.opacity = "1";
     });
 }
-
 function hideButtons() {
     var containers = document.querySelectorAll("#buttonContainer, #buttonContainersummary");
     containers.forEach(function(container) {
@@ -432,13 +523,26 @@ function hideButtons() {
     });
 }
 
+
+ function showButtons2() {
+    var containers2 = document.querySelectorAll("#buttonContainer2");
+    containers2.forEach(function(container) {
+        container.style.opacity = "1";
+    });
+}
+
+function hideButtons2() {
+    var containers2 = document.querySelectorAll("#buttonContainer2");
+    containers2.forEach(function(container) {
+        container.style.opacity = "0";
+    });
+}
     function showPopup(id) {
         // Close all popups
         var popups = document.querySelectorAll('.popup','.popup-main');
         popups.forEach(function(popup) {
             popup.style.display = "none";
         });
-
         // Show selected popup
         var popup = document.getElementById(id);
         popup.style.display = "block";
@@ -462,11 +566,17 @@ function hideButtons() {
     var trollface = document.getElementById('trollface');
     trollface.style.opacity = "1";
 }
-
 function hideTrollface() {
     var trollface = document.getElementById('trollface');
     trollface.style.opacity = "0";
 }
-
         }
+function showAboutMe() {
+    var aboutme = document.querySelector('.about-me');
+    aboutme.style.display = "block";
+}
+function closeAboutMe() {
+    var aboutMe = document.getElementById('about-me');
+    aboutMe.style.display = 'none';
+}
 </script>
